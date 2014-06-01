@@ -5,7 +5,7 @@ Encode strings to binary arrays and back again
 # example
 
 ```
-var binaryEncoderRing = require('binaryEncoderRing');
+var binaryEncoderRing = require('binary-encoder-ring');
 
 var ring = new binaryEncoderRing();
 
@@ -34,7 +34,7 @@ runs the example test.
 # methods
 
 ``` js
-var binaryEncoderRing = require('binaryEncoderRing');
+var binaryEncoderRing = require('binary-encoder-ring');
 ```
 
 ## var ring = new binaryEncoderRing();
@@ -52,7 +52,7 @@ returns a string represenation of the binary array
 With [npm](https://npmjs.org) do:
 
 ```
-npm install binaryEncoderRing
+npm install binary-encoder-ring
 ```
 to get the library.
 
