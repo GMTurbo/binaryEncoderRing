@@ -37,3 +37,5 @@ var binaryEncoderRing = function(){
   }
   
 };
+
+module.exports = binaryEncoderRing;
