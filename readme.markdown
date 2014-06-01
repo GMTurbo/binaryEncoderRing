@@ -23,7 +23,7 @@ console.log(ring.decode(target));
 
 # details
 
-useful if you're testing (binary GA's)[https://github.com/GMTurbo/canonical-ga]
+useful if you're testing [binary GA's](https://github.com/GMTurbo/canonical-ga)
 
 # scripts
 
