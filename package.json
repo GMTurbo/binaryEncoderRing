@@ -1,8 +1,11 @@
 {
   "name": "binary-encoder-ring",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Encode strings to binary arrays and back again",
   "main": "binaryEncoderRing.js",
+  "bin": {
+    "binaryEncoderRing": "./binaryEncoderRing.js"
+  },
   "directories": {
     "test": "tests"
   },
@@ -23,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/GMTurbo/binaryEncoderRing/issues"
   },
-  "homepage": "https://github.com/GMTurbo/binaryEncoderRing"
+  "homepage": "https://github.com/GMTurbo/binaryEncoderRing",
+  "devDependencies": {
+    "minimist": "^0.1.0",
+    "through": "^2.3.4"
+  }
 }

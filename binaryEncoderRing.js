@@ -13,7 +13,7 @@ var binaryEncoderRing = function(){
   
   function encode(stringToEncode){
     
-    var base64 = new Buffer(stringToEncode).toString('base64')
+    var base64 = new Buffer(stringToEncode).toString('base64');
     
     this.binaryRep = [];
 
@@ -33,7 +33,7 @@ var binaryEncoderRing = function(){
   
   this.encodeFromBuffer = function(base64){
     
-    var base64 = base64.toString('base64')
+    base64 = base64.toString('base64');
     
     this.binaryRep = [];
 
@@ -70,12 +70,11 @@ var binaryEncoderRing = function(){
     var binaryArrToDecode = data.toString('ascii');
     
     this.binaryRep = split(binaryArrToDecode, ' ');
-    
-    //console.dir(this.binaryRep);
+
     var ret = [];
     var count = 0;
     for(var i = 0 ; i < this.binaryRep.length ; i++){
-      ret.push(String.fromCharCode(parseInt(this.binaryRep[i].join(''), 2)))
+      ret.push(String.fromCharCode(parseInt(this.binaryRep[i].join(''), 2)));
     }
     return new Buffer(ret.join(''), 'base64').toString('ascii');
     
