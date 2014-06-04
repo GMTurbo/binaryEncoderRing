@@ -1,4 +1,5 @@
 # binaryEncoderRing
+[![NPM version](https://badge.fury.io/js/binary-encoder-ring.svg)](http://badge.fury.io/js/binary-encoder-ring)
 
 Encode strings to binary arrays and back again
 
