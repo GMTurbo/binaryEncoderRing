@@ -1,10 +1,38 @@
 var through = require('through');
 var argv = require('minimist')(process.argv.slice(2));
 
+var stream = function(type){
+  
+  var ber = new binaryEncoderRing();
+  
+  var tr = null;
+  
+  if(type == 'encode'){
+    
+    tr = through(function(data){
+      this.queue(ber.encodeFromBuffer(data));
+    });
+  }else{
+    tr = through(function(data){
+      this.queue(ber.decodeFromBuffer(data));
+    });
+  }
+  
+  return tr;
+}
+
 var binaryEncoderRing = function(){
   
   this.binaryRep = [];
   this.result = null;
+
+  this.encodeStream = function(){
+    return new stream('encode');
+  };
+  
+  this.decodeStream = function(){
+    return new stream('decode');
+  };
   
   this.encode = function(stringToEncode){
     return encode(stringToEncode);
@@ -49,7 +77,7 @@ var binaryEncoderRing = function(){
     return decode(binaryArrToDecode);
   };
   
-  function decode(stringToEncode){
+  function decode(binaryArrToDecode){
     
     var ret = [];
     var count = 0;
@@ -93,27 +121,11 @@ var binaryEncoderRing = function(){
   }
 };
 
-var binaryStream = new binaryEncoderRing();
-
-var onData = function(data){
+if(argv.p){
   if(argv.d)
-    this.queue(binaryStream.decodeFromBuffer(data));
+    process.stdin.pipe(new stream('decode')).pipe(process.stdout);
   else
-    this.queue(binaryStream.encodeFromBuffer(data));
-};
+    process.stdin.pipe(new stream('encode')).pipe(process.stdout);
+}
 
-var onEnd = function(data){
-  
-  if(!data) return;
-  
-  if(argv.d)
-    this.queue(binaryStream.decodeFromBuffer(data));
-  else
-    this.queue(binaryStream.encodeFromBuffer(data));
-};
-
-var tr = through(onData, onEnd);
-
-process.stdin.pipe(tr).pipe(process.stdout);
-  
 module.exports = binaryEncoderRing;

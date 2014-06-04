@@ -1,5 +1,6 @@
 
 var binaryEncoderRing = require('../binaryEncoderRing');
+var fs = require('fs');
 
 var ring = new binaryEncoderRing();
 
@@ -9,12 +10,8 @@ var sentenceSmall = "beEp bOoP";
 
 var target = ring.encode(sentenceSmall);
 
-//console.log(target);
-
 console.log(ring.decode(target));
 
 var targetLong = ring.encode(sentenceLong);
-
-//console.log(targetLong);
 
 console.log(ring.decode(targetLong));

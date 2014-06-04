@@ -1,6 +1,6 @@
 {
   "name": "binary-encoder-ring",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Encode strings to binary arrays and back again",
   "main": "binaryEncoderRing.js",
   "bin": {

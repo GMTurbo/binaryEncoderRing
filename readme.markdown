@@ -6,6 +6,7 @@ Encode strings to binary arrays and back again
 
 ```
 var binaryEncoderRing = require('binary-encoder-ring');
+var fs = require('fs');
 
 var ring = new binaryEncoderRing();
 
@@ -18,6 +19,25 @@ console.log(ring.decode(target));
 
 var targetLong = ring.encode(sentenceLong);
 console.log(ring.decode(target));
+
+fs.createReadStream('test.txt').pipe(ring.encodeStream()).pipe(ring.decodeStream()).pipe(process.stdout);
+
+
+```
+
+# piping example
+
+calling binaryEncoderRing.js with `-p` preps the program to encode data for process.stdin
+
+calling binaryEncoderRing.js with `-pd` preps the program to decode data for process.stdin
+
+```
+echo 'anyong!' | node binaryEncoderRing.js -p
+1011001 1010111 110101 110101 1100010 110010 110101 1101110 1001001 1010001 1101111 111101
+
+echo 'anyong!' | node binaryEncoderRing.js -p | node binaryEncoderRing.js -pd
+anyong!
+
 
 ```
 
@@ -33,7 +53,7 @@ runs the example test.
 
 # methods
 
-``` js
+```
 var binaryEncoderRing = require('binary-encoder-ring');
 ```
 
@@ -46,6 +66,12 @@ returns an binary representation of the input string.
 
 ## ring.decode(binaryArr)
 returns a string represenation of the binary array
+
+## ring.encodeStream()
+create an encoding stream
+
+## ring.decodeStream()
+return a decoding stream
 
 # install
 
